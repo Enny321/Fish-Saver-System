@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>These Farmers Were Exactly Where You Are Now | Sabii Farms</title>
+<!-- Facebook Pixel — PageView on load; Purchase fires on WhatsApp click via JS -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1645401233220254');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></noscript>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0a1a14;
+    --bg3:      #112b1e;
+    --gold:     #f0b429;
+    --gold-dim: #c8911a;
+    --wa-green: #25d366;
+    --wa-dark:  #128c4a;
+    --white:    #f5f5f5;
+    --muted:    #8fada0;
+    --red:      #e63946;
+    --border:   rgba(240,180,41,0.18);
+    --card-bg:  rgba(17,43,30,0.95);
+    --page-max: 860px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+  }
+
+  /* ── STICKY TOP STRIP ── */
+  .top-strip {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--red);
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page-wrap { max-width: var(--page-max); margin: 0 auto; }
+
+  /* ── AD THUMBNAIL in hero ── */
+  .ad-thumb-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .ad-thumb {
+    width: 64px; height: 64px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid var(--gold-dim);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(240,180,41,0.1);
+  }
+  .ad-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ad-thumb-label {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+    text-align: left;
+    max-width: 200px;
+  }
+  .ad-thumb-label strong {
+    display: block;
+    color: var(--gold);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(180deg, #0d2219 0%, var(--bg) 100%);
+    padding: 48px 24px 38px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(240,180,41,0.12);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 3px;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5.5vw, 46px);
+    line-height: 1.12;
+    color: var(--white);
+    max-width: 680px;
+    margin: 0 auto 20px;
+    text-transform: uppercase;
+  }
+  .hero h1 span { color: var(--gold); display: block; }
+  .hero-sub {
+    font-size: clamp(15px, 2.2vw, 18px);
+    color: #c4ddd4;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .hero-sub strong { color: var(--white); }
+
+  /* ── PROOF SECTION ── */
+  .proof-section { padding: 8px 0 60px; }
+
+  .proof-section-intro {
+    text-align: center;
+    padding: 28px 24px 24px;
+  }
+  .proof-section-intro p {
+    font-size: clamp(14px, 2vw, 16px);
+    color: #b8d4c8;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── PROOF CARD ── */
+  .proof-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    margin: 0 16px 10px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .proof-card-header { padding: 18px 20px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+  .proof-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(37,211,102,0.12);
+    border: 1px solid rgba(37,211,102,0.3);
+    color: var(--wa-green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .proof-badge::before { content: '✓'; font-size: 12px; }
+
+  .proof-card-header h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(18px, 3vw, 23px);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .proof-card-header p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+  /* ── WATCH-FOR PROMPT ── */
+  .watch-prompt {
+    margin: 0 16px 0;
+    background: rgba(240,180,41,0.07);
+    border: 1px solid rgba(240,180,41,0.2);
+    border-top: none;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--gold);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .watch-prompt::before { content: '👁 '; }
+
+  /* ── WHATSAPP GALLERY ── */
+  .wa-gallery { padding: 16px 16px 8px; display: flex; flex-direction: column; gap: 10px; }
+  .wa-img-wrap {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    max-width: 400px;   /* chat screenshots read best at this width */
+    margin: 0 auto;
+    width: 100%;
+  }
+  .wa-img-wrap img { width: 100%; display: block; }
+  .wa-label {
+    background: rgba(0,0,0,0.55);
+    color: #aed6c5;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── VIDEO WRAPPER ── */
+  /* Container lives inside the card padding zone */
+  .video-container {
+    padding: 0 16px;          /* matches card side padding */
+    margin: 14px 0 6px;
+    position: relative;
+  }
+  /* Inner frame caps width and centres on desktop */
+  .video-frame {
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;       /* anchor for end-card overlay */
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #000;
+  }
+  .video-frame video {
+    width: 100%;
+    display: block;
+    background: #000;
+    /* Prevent portrait videos going taller than viewport on desktop */
+    max-height: 70vh;
+    object-fit: contain;
+  }
+
+  /* ── VIDEO END-CARD OVERLAY ── */
+  .video-endcard {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(8,24,16,0.93);
+    border-radius: 6px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .video-endcard.active { display: flex; }
+  .endcard-tick {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: rgba(37,211,102,0.15);
+    border: 2px solid var(--wa-green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .endcard-label {
+    font-size: 11px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+  }
+  .endcard-next {
+    font-family: 'Oswald', sans-serif; font-weight: 600;
+    font-size: clamp(14px, 3.5vw, 17px);
+    color: var(--white); line-height: 1.25;
+  }
+  .endcard-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--wa-green); color: #fff;
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em;
+    padding: 10px 18px; border-radius: 5px; border: none; cursor: pointer;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.3); transition: background 0.15s;
+    margin-top: 2px;
+  }
+  .endcard-btn:active { background: var(--wa-dark); }
+  .endcard-replay {
+    font-size: 12px; color: var(--muted); background: none;
+    border: none; cursor: pointer; text-decoration: underline; padding: 0;
+  }
+
+  .card-caption {
+    padding: 10px 20px 18px;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-style: italic;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    margin-top: 12px;
+  }
+
+  /* ── NARRATIVE BRIDGE ── */
+  .bridge {
+    text-align: center;
+    padding: 18px 24px;
+    font-size: clamp(14px, 2vw, 15.5px);
+    color: #a8c8bc;
+    font-style: italic;
+    position: relative;
+    line-height: 1.6;
+  }
+  .bridge::before, .bridge::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--border);
+    margin: 0 20px;
+  }
+  .bridge::before { margin-bottom: 14px; }
+  .bridge::after  { margin-top: 14px; }
+  .bridge span { color: var(--white); font-style: normal; font-weight: 600; }
+
+  /* ── EVIDENCE SUMMARY ── */
+  .evidence-summary {
+    background: rgba(17,43,30,0.8);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin: 0 16px 32px;
+    padding: 20px 22px;
+    text-align: center;
+  }
+  .evidence-summary p {
+    font-size: clamp(14px, 2.2vw, 16px);
+    color: #c4ddd4;
+    line-height: 1.7;
+  }
+  .evidence-summary p strong { color: var(--gold); }
+
+  /* ── BONUS BLOCK ── */
+  .bonus-block {
+    background: rgba(37,211,102,0.06);
+    border: 1.5px solid rgba(37,211,102,0.25);
+    border-radius: 6px;
+    margin: 0 16px 32px;
+    padding: 20px 22px;
+  }
+  .bonus-tag {
+    display: inline-block;
+    background: var(--wa-green);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .bonus-block h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(17px, 3vw, 21px);
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .bonus-block p {
+    font-size: 13.5px;
+    color: #b8d4c8;
+    line-height: 1.6;
+  }
+  .bonus-block p strong { color: var(--white); }
+
+  /* ── URGENCY BLOCK ── */
+  .urgency-block {
+    background: linear-gradient(180deg, var(--bg3) 0%, #0d1f16 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 44px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .urgency-block::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(240,180,41,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .urgency-tag {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 3px;
+    margin-bottom: 22px;
+  }
+  .urgency-block h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 4.5vw, 38px);
+    line-height: 1.15;
+    color: var(--white);
+    max-width: 600px;
+    margin: 0 auto 20px;
+    text-transform: uppercase;
+  }
+  .urgency-block h2 em { color: var(--gold); font-style: normal; }
+
+  .urgency-lines {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .urgency-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: clamp(14px, 2vw, 16px);
+    color: #c4ddd4;
+    line-height: 1.55;
+  }
+  .urgency-line-icon {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(240,180,41,0.15);
+    border: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+
+  .price-callout {
+    display: inline-block;
+    background: rgba(240,180,41,0.1);
+    border: 1.5px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 24px;
+    margin: 0 auto 30px;
+    max-width: 400px;
+    width: 100%;
+  }
+  .price-main {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 6vw, 52px);
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .price-sub { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+  /* ── CTA BUTTON ── */
+  .cta-wrap {
+    padding: 0 20px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--wa-green);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(17px, 3vw, 26px);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    padding: 20px 28px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 520px;
+    position: relative;
+    overflow: hidden;
+    animation: pulse-shadow 2.4s ease-in-out infinite;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .cta-btn::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cta-btn:active { transform: scale(0.97); background: var(--wa-dark); animation: none; }
+  .cta-note { font-size: 12.5px; color: var(--muted); text-align: center; max-width: 340px; line-height: 1.55; }
+
+  /* ── STICKY BOTTOM BAR — hidden until scroll threshold ── */
+  .sticky-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #0d1f16;
+    border-top: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.5);
+    /* hidden by default */
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .sticky-bar.visible { transform: translateY(0); }
+  .sticky-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--wa-green);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  }
+  .sticky-bar a:active { background: var(--wa-dark); }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 24px 20px 16px;
+    font-size: 12px;
+    color: #4d7066;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes pulse-shadow {
+    0%, 100% { box-shadow: 0 6px 32px rgba(37,211,102,0.35), 0 2px 8px rgba(0,0,0,0.4); }
+    50%       { box-shadow: 0 6px 52px rgba(37,211,102,0.6),  0 2px 8px rgba(0,0,0,0.4); }
+  }
+  @media (prefers-reduced-motion: reduce) { .cta-btn { animation: none; } }
+
+  /* ── DESKTOP TWEAKS ── */
+  @media (min-width: 640px) {
+    .proof-card, .evidence-summary, .bonus-block { margin-left: 24px; margin-right: 24px; }
+    .hero { padding: 60px 32px 48px; }
+    .proof-section-intro { padding: 40px 32px 32px; }
+    .watch-prompt { margin-left: 24px; margin-right: 24px; }
+  }
+  @media (max-width: 380px) {
+    .proof-card { margin: 0 10px 10px; }
+    .wa-gallery  { padding: 10px 10px 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY TOP URGENCY STRIP -->
+<div class="top-strip">
+  ⚠️ Price goes up once this becomes part of the full Fish Health System. Act now.
+</div>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="ad-thumb-row">
+      <div class="ad-thumb">
+        <img src="https://res.cloudinary.com/dmcurkcnk/image/upload/f_auto,q_auto:eco,w_900,c_limit/v1782483708/Jun_26_2026_03_03_26_PM_iynnq9.png" alt="Sabii Farms Fish Saver System" fetchpriority="high">
+      </div>
+      <div class="ad-thumb-label">
+        <strong>✓ You're in the right place</strong>
+        This is the Sabii Farms Fish Saver System page you clicked to reach.
+      </div>
+    </div>
+    <div class="hero-eyebrow">Real Proof. Real Farmers. Real Results.</div>
+    <h1>These Farmers Were <span>Exactly Where You Are Now.</span></h1>
+    <p class="hero-sub">
+      If you have already lost fish this week — or you can see something is wrong but don't know what to do —
+      <strong>the farmers below were in the exact same place.</strong>
+      Watch what happened after they used the Sabii Farms Fish Saver System.
+    </p>
+  </section>
+
+  <!-- PROOF SECTION -->
+  <section class="proof-section">
+
+    <div class="proof-section-intro">
+      <p>Go through each story below. Every one is a different farmer, a different situation — but the same result.</p>
+    </div>
+
+    <!-- ══ STORY 1: Beginner Farmer (VIDEO — strongest opener) ══ -->
+    <div class="proof-card" id="story1">
+      <div class="proof-card-header">
+        <div class="proof-badge">First-Time Farmer · Video Testimony</div>
+        <h2>She Was New. She Didn't Know What To Do. Watch This.</h2>
+        <p>She had just started farming when fish began dying. She didn't know what to do or where to turn. Watch what she tried, what worked, and what she says today.</p>
+      </div>
+      <div class="watch-prompt">Pay attention to the moment she describes what she thought she was going to lose — and what changed.</div>
+      <div class="video-container">
+        <div class="video-frame">
+          <video id="vid1" controls playsinline preload="metadata" aria-label="First-time farmer shares her experience stopping fish deaths">
+            <source src="https://res.cloudinary.com/dmcurkcnk/video/upload/f_auto,q_auto:eco,vc_auto,w_720,c_limit,so_0/v1782445227/Fatima_Test_x33cg0.mp4" type="video/mp4">
+          </video>
+          <div class="video-endcard" id="ec-vid1">
+        <div class="endcard-tick">✓</div>
+        <div class="endcard-label">Story done — keep going</div>
+        <div class="endcard-next">Next: A Grow-Out Farmer Lost 100+ Fish →</div>
+        <button class="endcard-btn" onclick="goToNext('story2','vid1')">Continue ↓</button>
+        <button class="endcard-replay" onclick="replayVideo('vid1','ec-vid1')">Watch again</button>
+          </div>
+        </div><!-- /video-frame -->
+      </div><!-- /video-container -->
+      <div class="card-caption">A first-time farmer. No experience. No idea what to do. Same result as every other farmer on this page.</div>
+    </div>
+
+    <div class="bridge">She wasn't alone. <span>A grow-out farmer with over 100 fish already dead</span> sent us a WhatsApp message the same week.</div>
+
+    <!-- ══ STORY 2: Grow-Out Farmer (WhatsApp chat) ══ -->
+    <div class="proof-card" id="story2">
+      <div class="proof-card-header">
+        <div class="proof-badge">Grow-Out Farmer · Real WhatsApp Chat</div>
+        <h2>She Had Already Lost Over 100 Fish. Read What Happened Next.</h2>
+        <p>This is a real WhatsApp conversation — unedited, unfiltered. She reached out in panic. Read her messages over several days as the deaths stopped and her farm came back to life.</p>
+      </div>
+      <div class="watch-prompt">Read the dates on each message. Watch how fast things changed once the right treatment was applied.</div>
+      <div class="wa-gallery">
+        <div class="wa-img-wrap">
+          <img src="https://res.cloudinary.com/dmcurkcnk/image/upload/f_auto,q_auto:good,w_750,c_limit/v1782445421/Tonte_1_qhb1y9.jpg" alt="WhatsApp chat day 1 - fish deaths" loading="lazy">
+          <div class="wa-label">📱 Day 1 — Fish still dying. Farmer panicking.</div>
+        </div>
+        <div class="wa-img-wrap">
+          <img src="https://res.cloudinary.com/dmcurkcnk/image/upload/f_auto,q_auto:good,w_750,c_limit/v1782447206/Tonte_2_imshi3.jpg" alt="WhatsApp chat day 2 - treatment started" loading="lazy">
+          <div class="wa-label">📱 Day 2 — Treatment started. First signs of change.</div>
+        </div>
+        <div class="wa-img-wrap">
+          <img src="https://res.cloudinary.com/dmcurkcnk/image/upload/f_auto,q_auto:good,w_750,c_limit/v1782447206/Tonte_3_gn5se0.jpg" alt="WhatsApp chat follow-up - deaths stopped" loading="lazy">
+          <div class="wa-label">📱 Follow-up — Deaths stopped. Farm stabilised.</div>
+        </div>
+      </div>
+      <div class="card-caption">Real WhatsApp screenshots. No editing. No staging. This is what happened.</div>
+    </div>
+
+    <div class="bridge">Now read what happened when the problem started even earlier — <span>at the hatchery stage, before the fish even had a chance.</span></div>
+
+    <!-- ══ STORY 3: Hatchery Owner (VIDEO) ══ -->
+    <div class="proof-card" id="story3">
+      <div class="proof-card-header">
+        <div class="proof-badge">Hatchery Owner · Before &amp; After</div>
+        <h2>Deaths Stopped Within 24 Hours. Weak Fish Came Back To Life.</h2>
+        <p>When fish die at the hatchery stage, most farmers think it is already too late. Watch how this hatchery owner turned it around within 24 hours.</p>
+      </div>
+      <div class="watch-prompt">Watch the before footage closely — then pay attention to what the fish look like after. That difference is what this system does.</div>
+      <div class="video-container">
+        <div class="video-frame">
+          <video id="vid2" controls playsinline preload="metadata" aria-label="Hatchery owner before and after using the Fish Saver System">
+            <source src="https://res.cloudinary.com/dmcurkcnk/video/upload/c_limit,w_720/so_0/vc_auto/f_auto/q_auto:good/v1782445232/Hatchery_Before_and_After_ac2mby.mp4" type="video/mp4">
+          </video>
+          <div class="video-endcard" id="ec-vid2">
+        <div class="endcard-tick">✓</div>
+        <div class="endcard-label">Story done — keep going</div>
+        <div class="endcard-next">Next: Hatchery Owner's Before &amp; After →</div>
+        <button class="endcard-btn" onclick="goToNext('story3','vid2')">Continue ↓</button>
+        <button class="endcard-replay" onclick="replayVideo('vid2','ec-vid2')">Watch again</button>
+          </div>
+        </div><!-- /video-frame -->
+      </div><!-- /video-container -->
+      <div class="card-caption">Same pond. Same fish. Different outcome — because the right treatment was used.</div>
+    </div>
+
+    <div class="bridge">And this last farmer? <span>He now keeps this treatment as a permanent part of every single cycle.</span> Hear why.</div>
+
+    <!-- ══ STORY 4: Repeat Farmer (VIDEO) ══ -->
+    <div class="proof-card" id="story4">
+      <div class="proof-card-header">
+        <div class="proof-badge">Repeat Farmer · Still Uses It Every Cycle</div>
+        <h2>His First Cycle Was Almost Ruined. Now He Won't Farm Without It.</h2>
+        <p>He found this system when his first cycle was falling apart. He used it, saved the cycle — and has never farmed without it since. Hear directly from him why.</p>
+      </div>
+      <div class="watch-prompt">Listen to what he says he would have lost if he had waited even one more day.</div>
+      <div class="video-container">
+        <div class="video-frame">
+          <video id="vid3" controls playsinline preload="metadata" aria-label="Repeat farmer explains why he still uses Fish Saver System every cycle">
+            <source src="https://res.cloudinary.com/dmcurkcnk/video/upload/f_auto,q_auto:eco,vc_auto,w_720,c_limit,so_0/v1782448655/Testimonial_New_hook_916_1_sbnykq.mp4" type="video/mp4">
+          </video>
+          <div class="video-endcard" id="ec-vid3">
+            <div class="endcard-tick">✓</div>
+            <div class="endcard-label">You've now seen all four stories</div>
+            <div class="endcard-next">You've seen enough.<br>Now get your copy.</div>
+            <button class="endcard-btn" onclick="document.querySelector('.urgency-block').scrollIntoView({behavior:'smooth'})">See the offer below ↓</button>
+            <button class="endcard-replay" onclick="replayVideo('vid3','ec-vid3')">Watch again</button>
+          </div>
+        </div><!-- /video-frame -->
+      </div><!-- /video-container -->
+      <div class="card-caption">A second cycle. A third cycle. He still uses it — because he knows what happens when he doesn't.</div>
+    </div>
+
+    <!-- EVIDENCE SUMMARY -->
+    <div class="evidence-summary" id="evidence-anchor">
+      <p>You just watched <strong>four different farmers</strong> — a first-timer, a grow-out farmer, a hatchery owner, and a farmer now on his third cycle. Different ponds. Different stages. Different problems. <strong>One system. Same result every time.</strong></p>
+    </div>
+
+    <!-- BONUS BLOCK -->
+    <div class="bonus-block">
+      <div class="bonus-tag">🎁 Free Bonus — Included With Your Copy</div>
+      <h3>You Also Get Added To Our Private Farmers' WhatsApp Group</h3>
+      <p>Join <strong>480+ active farmers</strong> learning from Sabii Farms every single day. Ask questions, get answers, and never face a fish problem alone again. This group is not sold separately — it comes with your copy of the Fish Saver System.</p>
+    </div>
+
+  </section>
+
+  <!-- URGENCY BLOCK -->
+  <section class="urgency-block">
+    <div class="urgency-tag">⏳ Limited Time Price</div>
+    <h2>Don't Wait Until The <em>Next Outbreak Forces You</em> To Look For Answers.</h2>
+    <div class="urgency-lines">
+      <div class="urgency-line">
+        <div class="urgency-line-icon">→</div>
+        <span>For now, we are making this available on its own for only <strong style="color:var(--gold)">₦5,400.</strong></span>
+      </div>
+      <div class="urgency-line">
+        <div class="urgency-line-icon">→</div>
+        <span>This price only lasts while it is still a standalone offer.</span>
+      </div>
+      <div class="urgency-line">
+        <div class="urgency-line-icon">→</div>
+        <span>When it becomes part of our complete Fish Health System, it will only be available inside the full package — at a much higher price.</span>
+      </div>
+      <div class="urgency-line">
+        <div class="urgency-line-icon">→</div>
+        <span>Every day you wait is another day your fish are at risk. You have now seen what happens for those who acted.</span>
+      </div>
+    </div>
+    <div class="price-callout">
+      <div class="price-main">₦5,400</div>
+      <div class="price-sub">One-time payment. Yours to keep forever.<br>+ Free entry into our 480+ farmer WhatsApp group.</div>
+    </div>
+  </section>
+
+  <!-- MAIN CTA -->
+  <div style="background: var(--bg); padding: 36px 20px 20px;">
+    <div class="cta-wrap">
+      <a href="https://wa.link/ivssop" class="cta-btn wa-link" rel="noopener noreferrer">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Click Here — Get It On WhatsApp Now
+      </a>
+      <div class="cta-note">
+        You will be taken to WhatsApp to complete your payment of <strong style="color:var(--white)">₦5,400.</strong><br>
+        Fast. Simple. Secure. Access + group entry immediately after payment.
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Sabii Farms Incorporated · Ibadan, Nigeria</p>
+    <p style="margin-top:6px">Results shown are from real farmers. Individual results will vary based on pond conditions and application.</p>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<!-- STICKY BOTTOM BAR — slides in after 3rd testimonial -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="https://wa.link/ivssop" class="wa-link" rel="noopener noreferrer">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    Get It On WhatsApp — ₦5,400
+  </a>
+</div>
+
+<script>
+  // ── Facebook Pixel: Purchase on WhatsApp click ──
+  document.querySelectorAll('.wa-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', { value: 5400, currency: 'NGN' });
+      }
+    });
+  });
+
+  // ── Sticky bar: reveal only after farmer has scrolled past Story 3 ──
+  var stickyBar    = document.getElementById('stickyBar');
+  var threshold    = document.getElementById('story3');
+  var stickyShown  = false;
+
+  function checkScroll() {
+    if (stickyShown) return;
+    var rect = threshold.getBoundingClientRect();
+    // Show once the bottom of story3 card has passed the middle of the viewport
+    if (rect.bottom < window.innerHeight * 0.6) {
+      stickyBar.classList.add('visible');
+      stickyShown = true;
+      window.removeEventListener('scroll', checkScroll);
+    }
+  }
+  window.addEventListener('scroll', checkScroll, { passive: true });
+
+  // ── Video end-card overlays ──
+  var videoIds = ['vid1', 'vid2', 'vid3'];
+
+  videoIds.forEach(function(id) {
+    var vid = document.getElementById(id);
+    if (!vid) return;
+    vid.addEventListener('ended', function() {
+      var ec = document.getElementById('ec-' + id);
+      if (ec) ec.classList.add('active');
+    });
+  });
+
+  function goToNext(cardId, currentVidId) {
+    // Hide the end-card
+    var ec = document.getElementById('ec-' + currentVidId);
+    if (ec) ec.classList.remove('active');
+    // Scroll to the next story card — farmer reads bridge + header before the video
+    var card = document.getElementById(cardId);
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function replayVideo(vidId, ecId) {
+    var ec = document.getElementById(ecId);
+    if (ec) ec.classList.remove('active');
+    var vid = document.getElementById(vidId);
+    if (vid) { vid.currentTime = 0; vid.play().catch(function(){}); }
+  }
+
+  // ── Lazy-load videos until near viewport ──
+  if ('IntersectionObserver' in window) {
+    var allVids = videoIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    var vObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var v = entry.target;
+          if (v.getAttribute('data-lazy') === '1') {
+            v.preload = 'metadata';
+            v.load();
+          }
+          vObs.unobserve(v);
+        }
+      });
+    }, { rootMargin: '300px' });
+    allVids.forEach(function(v) {
+      v.preload = 'none'; v.setAttribute('data-lazy','1'); vObs.observe(v);
+    });
+  }
+</script>
+
+</body>
+</html>
