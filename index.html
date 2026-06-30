@@ -900,6 +900,10 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
     if (e.target === backdrop) closeConfirm();
   }
 
+// ── TEST MODE — flip these two lines to test, then flip both back for production ──
+  var TEST_MODE       = false;   // ← set to true while testing, false for real traffic
+  var TEST_EVENT_CODE = '';      // ← paste test code here ONLY while TEST_MODE is true; leave empty otherwise
+
   // ── Pixel + CAPI: InitiateCheckout fires ONCE per session on WhatsApp proceed ──
   // Browser Pixel fires first, then CAPI Worker sends the same event server-side.
   // Both carry the same event_id → Meta deduplicates automatically.
@@ -909,7 +913,9 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
     checkoutFired = true;
     // Shared event_id — used by BOTH Pixel and CAPI so Meta deduplicates them
     var eventId = 'ic_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    // 1. Browser Pixel (client-side)
+    // 1. Browser Pixel (client-side) — always fires the normal way, test or not.
+    //    Meta's Test Events page captures browser Pixel events automatically
+    //    when you open the site from the Test Events screen.
     if (typeof fbq === 'function') {
       fbq('track', 'InitiateCheckout', {
         value:        5400,
@@ -918,18 +924,23 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
         eventID:      eventId   // <-- note: eventID (capital ID) is correct for Pixel
       });
     }
-    // 2. CAPI (server-side via Cloudflare Worker) — same event_id for deduplication
+    // 2. CAPI (server-side via Cloudflare Worker) — same event_id for deduplication.
+    //    test_event_code only applies here, since CAPI is the server-side path
+    //    Meta's Test Events tool needs explicit tagging to recognize.
+    var capiPayload = {
+      event_name:   'InitiateCheckout',
+      url:          window.location.href,
+      event_id:     eventId,
+      value:        5400,
+      currency:     'NGN',
+      content_name: 'Fish Saver System Ebook'
+    };
+    if (TEST_MODE && TEST_EVENT_CODE) capiPayload.test_event_code = TEST_EVENT_CODE;
+
     fetch('https://fish-saver-worker.emmanuelinioluwa2000.workers.dev/capi', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        event_name:   'InitiateCheckout',
-        url:          window.location.href,
-        event_id:     eventId,
-        value:        5400,
-        currency:     'NGN',
-        content_name: 'Fish Saver System Ebook'
-      })
+      body: JSON.stringify(capiPayload)
     }).catch(function(err) {
       // Silent fail — never block the user's WhatsApp navigation
       console.warn('CAPI send failed:', err);
