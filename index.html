@@ -977,13 +977,19 @@ document.getElementById('confirmProceed').addEventListener('click', function(e) 
       Math.random().toString(36).substr(2,9);
 
     if (typeof fbq === 'function') {
-      fbq('track','InitiateCheckout',{
-        value:5400,
-        currency:'NGN',
-        content_name:'Fish Saver System Ebook',
-        eventID:eventId
-      });
+  fbq(
+    'track',
+    'InitiateCheckout',
+    {
+      value: 5400,
+      currency: 'NGN',
+      content_name: 'Fish Saver System Ebook'
+    },
+    {
+      eventID: eventId
     }
+  );
+}
 
     var capiPayload = {
       event_name:'InitiateCheckout',
