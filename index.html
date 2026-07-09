@@ -56,8 +56,10 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
 
   /* ── STICKY TOP STRIP ── */
   .top-strip {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     background: var(--red);
     text-align: center;
@@ -67,6 +69,11 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
     letter-spacing: 0.03em;
     line-height: 1.4;
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transform: translateY(-100%);
+    transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+  }
+  .top-strip.visible {
+    transform: translateY(0);
   }
 
   /* ── PAGE WRAPPER ── */
@@ -567,7 +574,7 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
 <body>
 
 <!-- STICKY TOP URGENCY STRIP -->
-<div class="top-strip">
+<div class="top-strip" id="topStrip">
   ⚠️ Price goes up once this becomes part of the full Fish Health System. Act now.
 </div>
 
@@ -870,7 +877,7 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
       <p>One farmer we know recently lost over <strong>900 fish</strong> in just a couple of days. Although they were small fish, that's still more than <strong>₦300,000</strong> worth of fish.</p>
       <p>Not because treatment didn't exist. Because the right treatment came too late.</p>
       <p>After watching those farmers' videos above... you might be thinking, <em>"Those farmers were unlucky."</em> But the truth is... almost every farmer thinks that. We thought the same thing ourselves.</p>
-      <p>The reality is that disease outbreaks are part of catfish farming. It isn't a question of <strong>if</strong>. It's a question of <strong>when.</strong></p>
+      <p id="urgencyTriggerStart">The reality is that disease outbreaks are part of catfish farming. It isn't a question of <strong>if</strong>. It's a question of <strong>when.</strong></p>
       <p>When that day comes... the farmer who already knows exactly what to do has a huge advantage over the farmer who starts looking for answers after fish have already begun dying.</p>
     </div>
   </section>
@@ -883,7 +890,7 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
       <p>Whether you're already trying to stop unexplained fish deaths...</p>
       <p>or simply preparing for the future...</p>
       <p>the Fish Saver System gives you something you'll eventually need: <strong>the right knowledge, at the right time.</strong></p>
-      <p>For just <strong>₦5,400.</strong></p>
+      <p id="urgencyTriggerEnd">For just <strong>₦5,400.</strong></p>
       <p>That's less than the price of two table-size fish.</p>
       <p>Yet it could help you protect an investment worth hundreds of thousands — or even millions — of naira.</p>
       <p>We've deliberately kept the price low so more farmers can prepare before they ever face an outbreak.</p>
@@ -1048,19 +1055,36 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
     window.location.href = "https://wa.me/2348149182062?text=" + encodeURIComponent(msg);
   });
 
-  // ── Sticky bar: reveal after story3 passes 60% viewport ──
-  var stickyBar   = document.getElementById('stickyBar');
-  var threshold   = document.getElementById('story3');
-  var stickyShown = false;
+  // ── Sticky checkout bar: show/hide based on scroll position relative to story3 ──
+  var stickyBar      = document.getElementById('stickyBar');
+  var storyThreshold  = document.getElementById('story3');
+
+  // ── Top urgency strip: show/hide within the urgency trigger zone ──
+  var topStrip     = document.getElementById('topStrip');
+  var urgencyStart = document.getElementById('urgencyTriggerStart');
+  var urgencyEnd   = document.getElementById('urgencyTriggerEnd');
+
   function checkScroll() {
-    if (stickyShown) return;
-    if (threshold.getBoundingClientRect().bottom < window.innerHeight * 0.6) {
+    // Sticky checkout bar: appears after crossing story3, disappears if scrolled back above it
+    if (storyThreshold.getBoundingClientRect().bottom < window.innerHeight * 0.6) {
       stickyBar.classList.add('visible');
-      stickyShown = true;
-      window.removeEventListener('scroll', checkScroll);
+    } else {
+      stickyBar.classList.remove('visible');
+    }
+
+    // Top urgency strip: visible only between urgencyStart and urgencyEnd
+    if (urgencyStart && urgencyEnd) {
+      var pastStart = urgencyStart.getBoundingClientRect().top < 0;
+      var pastEnd   = urgencyEnd.getBoundingClientRect().top < 0;
+      if (pastStart && !pastEnd) {
+        topStrip.classList.add('visible');
+      } else {
+        topStrip.classList.remove('visible');
+      }
     }
   }
   window.addEventListener('scroll', checkScroll, { passive: true });
+  checkScroll();
 
   // ── Play overlay: hide when video starts ──
   [['vid1','po1'],['vid2','po2'],['vid3','po3']].forEach(function(pair) {
