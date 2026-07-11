@@ -569,6 +569,61 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
     .proof-card { margin: 0 10px 10px; }
     .wa-gallery  { padding: 10px 10px 4px; }
   }
+
+  /* ── NEW HERO HEADER IMAGE (replaces old ad-thumb-row images) ── */
+  .hero-image-wrap {
+    max-width: 260px;
+    margin: 0 auto 14px;
+  }
+  .hero-image-wrap img {
+    width: 100%;
+    height: auto;
+    max-height: 240px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.45), 0 0 0 1px rgba(240,180,41,0.15);
+  }
+  .hero-image-badge {
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto 4px;
+  }
+  .hero-image-badge strong {
+    display: block;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .hero-image-badge span {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  @media (min-width: 640px) {
+    .hero-image-wrap { max-width: 320px; }
+    .hero-image-wrap img { max-height: 280px; }
+  }
+
+  /* ── "HOW EXPENSIVE" SECTION IMAGE ── */
+  .matters-image-wrap {
+    max-width: 380px;
+    margin: 0 auto 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+  }
+  .matters-image-wrap img {
+    width: 100%;
+    display: block;
+  }
+  @media (min-width: 640px) {
+    .matters-image-wrap { max-width: 440px; }
+  }
 </style>
 </head>
 <body>
@@ -582,17 +637,12 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
 
   <!-- ══ HERO ══ -->
   <section class="hero">
-    <div class="ad-thumb-row">
-      <div class="ad-thumb">
-        <img src="https://res.cloudinary.com/dmcurkcnk/image/upload/f_auto,q_auto:eco,w_900,c_limit/v1779731056/WhatsApp_Image_2026-05-09_at_5.41.35_PM_2_pblhd4.jpg" alt="Sabii Farms Fish Saver System" fetchpriority="high">
-      </div>
-      <div class="ebook-thumb-hero">
-        <img src="https://res.cloudinary.com/dmcurkcnk/image/upload/f_auto,q_auto:good,w_120,c_limit/v1782715874/ChatGPT_Image_Jun_29_2026_07_48_35_AM_i7rhek.png" alt="Fish Saver System Ebook" fetchpriority="high">
-      </div>
-      <div class="ad-thumb-label">
-        <strong>✓ You're in the right place</strong>
-        This is the Sabii Farm Fish Saver System page you clicked to reach.
-      </div>
+    <div class="hero-image-wrap">
+      <img src="https://res.cloudinary.com/dmcurkcnk/image/upload/f_auto,q_auto:eco,w_700,c_limit/v1783792688/WhatsApp_Image_2026-03-13_at_12.04.46_PM_v46vek.png" alt="Sabii Farm Fish Saver System" fetchpriority="high" loading="eager">
+    </div>
+    <div class="hero-image-badge">
+      <strong>✓ You're in the right place</strong>
+      <span>This is the Sabii Farm Fish Saver System page you clicked to reach.</span>
     </div>
 
     <div class="hero-eyebrow">Sabii Farm Fish Saver System</div>
@@ -854,7 +904,7 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
           <p>If you need help applying the system, simply reach out. We'll personally guide you through the process.</p>
         </div>
       </li>
-      <li class="receive-item">
+      <li class="receive-item" id="bonusItem">
         <div class="receive-icon">🎁</div>
         <div class="receive-text">
           <h4>BONUS: Join The Sabii Farmers Community</h4>
@@ -867,6 +917,9 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
   <!-- ══ HOW EXPENSIVE CAN DELAY BECOME ══ -->
   <section class="matters-block section">
     <div class="section-label">How Expensive Can Delay Become?</div>
+    <div class="matters-image-wrap">
+      <img src="https://res.cloudinary.com/dmcurkcnk/image/upload/f_auto,q_auto:eco,w_600,c_limit/v1783794312/WhatsApp_Image_2025-12-12_at_11.25.04_672b5801_mw3xc0.png" alt="Cost of delaying fish disease treatment" loading="lazy">
+    </div>
     <h2>How Expensive Can Delay Become?</h2>
     <div class="section-body">
       <p>Most outbreaks don't start by killing hundreds of fish.</p>
@@ -1055,28 +1108,27 @@ src="https://www.facebook.com/tr?id=1645401233220254&ev=PageView&noscript=1"/></
     window.location.href = "https://wa.me/2348149182062?text=" + encodeURIComponent(msg);
   });
 
-  // ── Sticky checkout bar: show/hide based on scroll position relative to story3 ──
+  // ── Sticky checkout bar: show/hide based on scroll position relative to the bonus offer item ──
   var stickyBar      = document.getElementById('stickyBar');
-  var storyThreshold  = document.getElementById('story3');
+  var storyThreshold  = document.getElementById('bonusItem');
 
-  // ── Top urgency strip: show/hide within the urgency trigger zone ──
+  // ── Top urgency strip: appears at trigger point and stays visible to the end of the page ──
   var topStrip     = document.getElementById('topStrip');
   var urgencyStart = document.getElementById('urgencyTriggerStart');
-  var urgencyEnd   = document.getElementById('urgencyTriggerEnd');
 
   function checkScroll() {
-    // Sticky checkout bar: appears after crossing story3, disappears if scrolled back above it
+    // Sticky checkout bar: appears after crossing the bonus item, disappears if scrolled back above it
     if (storyThreshold.getBoundingClientRect().bottom < window.innerHeight * 0.6) {
       stickyBar.classList.add('visible');
     } else {
       stickyBar.classList.remove('visible');
     }
 
-    // Top urgency strip: visible only between urgencyStart and urgencyEnd
-    if (urgencyStart && urgencyEnd) {
+    // Top urgency strip: appears once the trigger point is passed and stays visible for the rest of the page.
+    // It only disappears again if the user scrolls back up above the trigger point.
+    if (urgencyStart) {
       var pastStart = urgencyStart.getBoundingClientRect().top < 0;
-      var pastEnd   = urgencyEnd.getBoundingClientRect().top < 0;
-      if (pastStart && !pastEnd) {
+      if (pastStart) {
         topStrip.classList.add('visible');
       } else {
         topStrip.classList.remove('visible');
